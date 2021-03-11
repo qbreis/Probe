@@ -8,3 +8,8 @@ Set up projecy
     "start": "serve ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
 },
+6.- Run: npm run start
+7.- Add to .git\info\exclude:
+modules
+package-lock.json
+package.json
