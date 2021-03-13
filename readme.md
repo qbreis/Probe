@@ -27,7 +27,7 @@ npm run start
 ```
 7. Add to **.git\info\exclude**:
 ```
-modules
+node_modules
 package-lock.json
 package.json
 ```
