@@ -1,44 +1,27 @@
 import {loadImage} from './loaders.js'
+import SpriteSheet from './SpriteSheet.js';
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
 canvas.width = 300;
 canvas.height = 400;
 
+const canvasTilesWidth = 13;
+const canvasTileSize = canvas.width / canvasTilesWidth;
+const canvasTilesHeight = Math.ceil(canvas.height / canvasTileSize);
 
 
 
 const image = '/images/new-green-deck-a-in-progress.svg';
 const imageTileSize = 10;
-const imageTilesWidth = 15;
-const imageTilesHeight = 20;
-const imageWidth = imageTilesWidth * imageTileSize;
-
-const canvasTilesWidth = 13;
-const canvasTileSize = canvas.width / canvasTilesWidth;
-
-const canvasTilesHeight = Math.floor(canvas.height / canvasTileSize);
-
-/*
-canvasTileSize       canvas.width
----------------- = -----------------
-imageTileSize             x
-
-
-*/
-
-console.log('::: ', imageTileSize);
-
-
 
 loadImage(image)
 .then(image => {
     
     
+    
     context.fillStyle = '#cccc00';
     context.fillRect(0, 0, canvas.width, canvas.height);
-
-
 
     for(let i = 0;i < canvasTilesWidth;i++) {
         for(let j = 0;j < canvasTilesHeight;j++) {
@@ -59,15 +42,18 @@ loadImage(image)
             }
         }
     }
+/*
+    const sprites = new SpriteSheet(image, 150, 200, canvasTileSize);
+    sprites.define('ship', 0, 0, 150, 200);
+    sprites.draw('ship', context, 0, 0);
+*/
 
-
-    
     context.drawImage(image, 
         1 * imageTileSize, 
         2 * imageTileSize, 
         canvasTilesWidth * imageTileSize, 
         canvasTilesHeight * imageTileSize, // subset 
-        0, 0, canvas.width, canvas.height // where 
+        0, 0, canvasTilesWidth * canvasTileSize, canvasTilesHeight * canvasTileSize // where 
     );
     
 });
